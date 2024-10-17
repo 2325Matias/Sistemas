@@ -1,0 +1,54 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+body {
+    display: flex;
+    height: 100vh;
+    background-color: #e4c413;
+}
+
+.left-selection {
+    background: #ffffff;
+    width: 170px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+    padding: 25px 10px;
+    transition: all 0.3s ease;
+}
+
+.left-selection button {
+    width: 100%;
+    height: 40px;
+    margin-top: 20px;
+    background: #fff;
+    border: 0.8px solid rgba(232, 231, 240, 0.2);
+    --bs-btn-hover-border-color: rgb(228, 152, 10); /*cambia color cuando me posiciono con el cursor*/
+    --bs-btn-active-border-color: rgb(228, 152, 10); /*cambia color cuando presiono el boton*/
+    outline: none;
+    border-radius: 10px;
+    --bs-btn-active-bg: rgb(228, 152, 10); /*sin esto pasa por dejecto un color azul*/
+    box-shadow: 0 0 10px rgba(0, 0, 0, .1); /* SOMBRA DEL ELEMENTO, OSCURO CASI TRANSPARENTE */
+    cursor: pointer;
+    font-size: 1em;
+    color: #333;
+    font-weight: 600;
+    transition: 0.5s; /* CUALQUIER CAMBIO EN EL DISEÑO SE REALIZA EN 0.5 SEGUNDOS EN EFECTO TRANSICION */
+}
+
+.left-selection button:hover {
+    background: rgb(228, 152, 10);
+    color: #fff;
+}
+
+.sign-out {
+    width: 130px;
+}
