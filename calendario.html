@@ -1,14 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/Calendario.css">
-    <title>Calendario</title>
-</head>
-
-<body>
 
     <div class="planner">
         <h1>Calendario de Eventos</h1>
@@ -22,12 +11,8 @@
             <span class="close" onclick="closeAddTaskModal()">&times;</span>
             <h2>Agregar Tarea</h2>
             <input type="date" id="task-date">
-            <input type="date" id="task-date" placeholder="Task Description">
+            <input type="text" id="task-desc" placeholder="Task Description">
             <button onclick="addTask()">Agregar Tarea</button>
         </div>
     </div>
-
-    <script src="js/calendario.js"></script>
-</body>
-
-</html>
+    

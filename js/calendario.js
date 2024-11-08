@@ -4,6 +4,7 @@ window.onload = function(){
 
 function generateCalendar(){
     const calendar = document.getElementById('calendar');
+    const daysOfWeek = ["Dom", "Lun", "Mar", "Mié", "Jue", "Vie", "Sáb"];
     const currentDate = new Date();
     const month = currentDate.getMonth();
     const year = currentDate.getFullYear();
@@ -14,6 +15,14 @@ function generateCalendar(){
     const firstDayOfWeek = firstDayOfMonth.getDay();
     const totalDays = lastDayOfMonth.getDate();
 
+    // Agregar los nombres de los días de la semana
+    for (let day of daysOfWeek) {
+        let dayName = document.createElement("div");
+        dayName.className = "day-name";
+        dayName.textContent = day;
+        calendar.appendChild(dayName);
+    }
+    
     for (let i=0; i < firstDayOfWeek; i++) {
         let blankDay = document.createElement("div");
         calendar.appendChild(blankDay);
@@ -29,11 +38,11 @@ function generateCalendar(){
 }
 
 function showAddTaskModal(){
-    document.getElementById('add-task-modal').style.display = 'block';
+    document.getElementById('addTaskModal').style.display = 'block';
 }
 
 function closeAddTaskModal(){
-    document.getElementById('add-task-modal').style.display = 'none';
+    document.getElementById('addTaskModal').style.display = 'none';
 }
 
 function deleteTask(taskElement){
@@ -50,34 +59,39 @@ function editTask(taskElement){
 }
 
 function addTask(){
-    const taskDate = new Date(document.getElementById('task-date').value);
+    // Extraer año, mes y día como números desde el campo de fecha
+    const dateValue = document.getElementById('task-date').value;
+    const [year, month, day] = dateValue.split('-').map(Number); // Descomponer fecha seleccionada
+    const taskDate = new Date(year, month - 1, day); // Crear la fecha en zona local
+
     const taskDesc = document.getElementById('task-desc').value.trim();
 
     if( taskDesc && !isNaN(taskDate.getDate())){
         const calendarDays = document.getElementById('calendar').children;
         for(let i = 0; i < calendarDays.length; i++){
-            const day = calendarDays[i];
-            if(parseInt(day.textContent) === taskDate.getDate()){
+            const dayElement = calendarDays[i];
+            if(parseInt(dayElement.textContent) === taskDate.getDate()){
                 const taskElement = document.createElement("div");
                 taskElement.className = "task";
                 taskElement.textContent = taskDesc;
 
+                // Añadir evento para eliminar la tarea con clic derecho
                 taskElement.addEventListener("contextmenu", function(event){
                     event.preventDefault();
                     deleteTask(taskElement);
                 })
 
+                // Añadir evento para editar la tarea con clic izquierdo
                 taskElement.addEventListener('click', function(){
                     editTask(taskElement);
                 })
 
-                day.appendChild(taskElement);
+                dayElement.appendChild(taskElement);
                 break;
             }
         }
         closeAddTaskModal();
-    }else{
+    } else {
         alert("Please enter a valid date and task description!");
     }
 }
-
